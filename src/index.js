@@ -1,8 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import MovieApp from './MovieApp';
+import {Provider} from 'react-redux';
+import store from './store';
 import * as serviceWorker from './serviceWorker';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const App=()=>(
+    <Provider store={store}>
+        <MovieApp/>
+    </Provider>
+
+)
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

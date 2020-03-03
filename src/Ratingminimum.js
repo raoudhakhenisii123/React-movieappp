@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+
 
 const Rating=({count, onchangeRating=()=>{}})=>{
 
     let starhtml=[]
 
- for (let i=0;i<6;i++){
+ for (let i=0;i<5;i++){
  if(i<count){
 starhtml.push(<span onClick={()=>onchangeRating(i+1)} key={i}>★</span>)
 

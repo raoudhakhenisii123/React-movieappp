@@ -1,28 +1,34 @@
-import React from'react'
+import React from 'react'
 import Rating from './Ratingminimum'
+import {deleteMovie} from './actions/MovieActions'
+import {connect } from 'react-redux'
+import EditModal from './EditModal'
 
+class Moviecard extends React.Component {
+    state={}
+    delete = (id) => {
+        this.props.delete(id)
+    }
+    render(){
+    return (
+        <div className='movie-card'>
+            <div className='movie-rating'>
+                <Rating count={this.props.movie.rating} />
+            </div>
+            <div className='movie-img'>
+                <img src={this.props.movie.image} alt="" />
+            </div>
 
-const Moviecard =(props)=>{
-const {movie={}}=props
-const {
-title='',
-year='', 
-image='https://www.mearto.com/assets/no-image-83a2b680abc7af87cfff7777d0756fadb9f9aecd5ebda5d34f8139668e0fc842.png',
-rating=0
-}=movie
+            <div className='movie-description'>{this.props.movie.title}--{this.props.movie.year}</div>
+            <button onClick={()=>this.delete(this.props.movie.id)}>delete</button>
+            <EditModal movie={this.props.movie} />
 
-return(
-         <div className='movie-card'>
-             <div className='movie-rating'>
-                 <Rating count={rating}/>
-             </div>
-              <div className='movie-img'>
-                  <img src={props.movie.image} />
-              </div>
-                  
-              <div className='movie-description'>{title}--{year}</div>
-
-         </div>)
-
+        </div>)
+    }
 }
-export default Moviecard
+const mapDispatchToProps = dispatch => {
+    return {
+      delete : id => dispatch(deleteMovie(id))
+    }
+  }
+export default connect(null , mapDispatchToProps)(Moviecard)
