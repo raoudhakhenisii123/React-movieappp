@@ -4,12 +4,18 @@ import './index.css';
 import MovieApp from './MovieApp';
 import {Provider} from 'react-redux';
 import store from './store';
+import {BrowserRouter, Route} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Description from './Description';
 
 const App=()=>(
     <Provider store={store}>
-        <MovieApp/>
+        <BrowserRouter>
+        {/* <MovieApp/> */}
+        <Route exact path="/" component={MovieApp}/>
+        <Route path="/desription/:id" component={Description}/>
+        </BrowserRouter>
     </Provider>
 
 )
